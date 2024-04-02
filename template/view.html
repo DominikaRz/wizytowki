@@ -1,0 +1,1417 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+        <!--CSS-->
+        <link rel="stylesheet" href="css/uikit.css"/>
+        <link rel="stylesheet" href="css/uikit-rtl.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <style>
+            .uk-table th{
+                text-align: left !important;
+            }
+        </style>
+        <!--JS-->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/uikit.js"></script>
+        <script src="js/uikit-icons.js"></script>
+
+        <!--ICONS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css"/>
+        <!--FONTS-->
+        <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Combo' rel='stylesheet'>
+
+        <!-- -->
+
+        <title>view</title>
+    </head>
+    <body>
+    <!--NAVBAR-->
+        
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" style="position: relative; z-index: 980;" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li uk-toggle="target: #struktura"><a href="#">Struktura</a></li>
+                        <li><a href="main">Strona główna</a></li>
+                        <li class="uk-active">
+                            <a href="view">CRUD</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="view">Branże</a></li>
+                                    <li><a href="view">Wizytówki</a></li>
+                                    <li><a href="view">Zamawiający</a></li>
+                                    <li><a href="view">Umowy</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="view">Dokumenty</a></li>
+                        <li><a href="pomoc">Pomoc</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="out">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            <div id="struktura" uk-offcanvas="overlay: true">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                    <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                        <li class="uk-active">Struktura bazy</li>
+                        <li class="uk-parent">
+                            <a href="#">BRANZA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li>nazwa_branza (20)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">BRANZA_WIZYT</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-primary">id_branza FK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">WIZYTOWKA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_wizytowka</li>
+                                <li>domena_wizyt (45)</li>
+                                <li>logo</li>
+                                <li>opis_skrocony</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">DANE_WIZYT</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li>adr_ul (56)</li>
+                                <li>adr_nr (10)</li>
+                                <li>adr_miast (40)</li>
+                                <li>adr_kod (6)</li>
+                                <li>adr_pocz (40)</li>
+                                <li>telefon (11)</li>
+                                <li>mail (100)</li>
+                                <li>str_int (63)</li>
+                                <li>opis (2000)</li>
+                                <li>geo_lat (18)</li>
+                                <li>geo_lon (18)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">FORMA_UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li>nazwa (10)</li>
+                                <li>czas_zawarcia (datetime)</li>
+                                <li>czas_zakonczenia (datetime)</li>
+                                <li>serwer (bool)</li>
+                                <li>wielkosc_serwer (float)</li>
+                                <li>opis (400)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">WIZYT_UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li class="uk-text-primary">id_umowa FK</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_umowa PK</li>
+                                <li class="uk-text-primary">id_zamawiajacy FK</li>
+                                <li>data (date)</li>
+                                <li>netto (float)</li>
+                                <li>rabat (int)</li>
+                                <li>VAT (float)</li>
+                                <li>kwota (float)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">ZAMAWIAJACY</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_zamawiajacy PK</li>
+                                <li>imie (13)</li>
+                                <li>nazwisko (27)</li>
+                                <li>nazwa_firmy (40)</li>
+                                <li>telefon (11)</li>
+                                <li>mail (100)</li>
+                                <li>adres_ul (56)</li>
+                                <li>adres_nr (10)</li>
+                                <li>adres_miast (40)</li>
+                                <li>adres_kod (6)</li>
+                                <li>adres_pocz (40)</li>
+                                <li>PESEL (11)</li>
+                                <li>NIP (10)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    <!--MAIN-->
+        <main class="uk-padding uk-margin">
+            <ul uk-tab>
+                <li><!--aria-expanded="true"-->
+                    
+                    <a href="#">BRANZA</a>
+                </li> 
+                <li class="uk-active">
+                    <a href="#" aria-expanded="true" >WIZYTÓWKA</a>
+                </li>
+                <li>
+                    <a href="#">UMOWA</a>
+                </li>
+                <li>
+                    <a href="#">ZAMAWIAJĄCY</a>
+                </li>
+                <li>
+                    <a href="#">FAKTURA</a>
+                </li>
+            </ul>
+
+            <ul id="wypisz" class="uk-switcher uk-margin">
+              <!--BRANZA-->
+                <li>
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <caption><h4><a href="add?s=BRANZA" uk-icon="icon: plus">Dodaj do bazy </a></h4></caption>
+                        <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Nazwa</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                            <td>1</td>
+                                            <td>administracja</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=1" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=1" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>2</td>
+                                            <td>budownictwo</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=2" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=2" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>3</td>
+                                            <td>edukacja</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=3" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=3" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>4</td>
+                                            <td>ekonomia</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=4" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=4" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>5</td>
+                                            <td>elektronika</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=5" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=5" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>6</td>
+                                            <td>gastronomia</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=6" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=6" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>7</td>
+                                            <td>handel</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=7" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=7" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>8</td>
+                                            <td>medycyna</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=8" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=8" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>9</td>
+                                            <td>motoryzacja</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=9" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=9" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>10</td>
+                                            <td>poligrafia</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=10" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=10" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>11</td>
+                                            <td>prawo</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=11" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=11" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>12</td>
+                                            <td>rekreacja</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=12" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=12" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>13</td>
+                                            <td>rolnictwo</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=13" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=13" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>14</td>
+                                            <td>technika</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=14" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=14" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>15</td>
+                                            <td>uroda</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=15" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=15" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>16</td>
+                                            <td>usługi</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=16" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=16" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>17</td>
+                                            <td>wyposarzenie wnętrz</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=17" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=17" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>18</td>
+                                            <td>zdrowie</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=18" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=18" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>19</td>
+                                            <td>inne</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=19" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=19" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>23</td>
+                                            <td>finansowość</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=23" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=23" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>24</td>
+                                            <td>finanse</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=24" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=24" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr><tr>
+                                            <td>25</td>
+                                            <td>gabrayty</td> 
+                                            <td>
+                                                <a href="edit?s=BRANZA&id=25" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=BRANZA&id=25" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                        </tr>                        </tbody>
+                    </table>
+                </li>
+              <!--WIZYTOWKA-->    
+                <li class="uk-active" > <!--class="uk-active"-->
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <caption><h4><a href="add?s=WIZYTOWKA" uk-icon="icon: plus">Dodaj do bazy </a></h4></caption>
+                        <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Domena</th>
+                                <th>Skrócony opis</th>
+                                <th>Adres</th>
+                                <th>tel, mail, www</th>
+                                <th>Opis</th>
+                                <th>Dane geograficzne</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                            <td>1</td>
+                                            <td>pcserwis.wizyt.pl </td> 
+                                            <td>Serwis komputerowy Wrocław.</td> 
+                                            <td>Pawłowa 12/3 Wrocław 53-604 Wrocław</td> 
+                                            <td>873 462 509<br>biuro@pcserwis.pl<br>https://pcserwis.pl/</td> 
+                                            <td width="500">Oferta PCSERWIS WROCŁAW skierowana jest przede wszystkim do małych i średnich firm. Naszą zaletą jest indywidualne podejście do Klienta, zarówno przy tworzeniu potrzeb działalności konfiguracja w.w. komponentów; udoskonalanie już istniejącej infrastruktury komputerowej; serwis komputerowy(usuwanie usterek sprzętowych i oprogramowania) konfiguracja serwerów</td> 
+                                            <td>dł: 51.127078, sz: 16.991864</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=1" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=1" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>2</td>
+                                            <td>meddent.wizyt.pl </td> 
+                                            <td>Przychodnia stomatologiczna Wrocław.</td> 
+                                            <td>Śliczna 10 Wrocław 50-566 Wrocław</td> 
+                                            <td>584 751 364<br>meddent@wp.pl<br></td> 
+                                            <td width="500">Centrum stomatologii - stomatolog, dentysta Wrocław. Jesteśmy zespołem doświadczonych dentystów w zakresie: Protetyki, Implantologii, Endodoncji, Chirurgii stomatologicznej, Ortodoncji oraz Stomatologii Estetycznej z uwzględnieniem wybielania zębów.Szczycimy się komfortowymi warunkami obsługi Pacjenta oraz zaawansowanymi technologiami medycznymi</td> 
+                                            <td>dł: 51.084715, sz: 17.03670</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=2" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=2" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>3</td>
+                                            <td>roza.wizyt.pl </td> 
+                                            <td>kwiaciarnia "RÓŻA" Wrocław.</td> 
+                                            <td>Nowowiejska 98 Wrocław 50-339 Wrocław</td> 
+                                            <td>478 254 645<br>roza@o2.pl<br></td> 
+                                            <td width="500">Kwiaciarnia Róża, nieprzerwanie od trzydziestu lat działa na rynku ogólnopolskim jak i zagranicznym, dostarczając kwiaty i prezenty wprost pod drzwi klienta. Wiemy, że w pędzie dzisiejszego życia trudno znaleźć czas na wybór, kupno oraz odbiór kwiatów i upominków. Od tego właśnie jesteśmy my. Nie tylko fachowo doradzimy i dobierzemy odpowiedni gatunek kwiatów i upominków do okoliczności, ale także nasza niezawodna poczta kwiatowo-prezentowa, poprzez współpracujące z nami lokalne kwiaciarnie, doręczy je pod wskazany adres. Nie musicie się niczym martwić, nasz zespół profesjonalistów wprowadzi Państwa w niesamowity świat kwiatów i aranżacji kwiatowych.</td> 
+                                            <td>dł: 51.118602, sz: 17.059384</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=3" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=3" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>4</td>
+                                            <td>lindt.wizyt.pl </td> 
+                                            <td>Sklep firmowy Lindt Lindor Wrocław.</td> 
+                                            <td>Sucha 1 Wrocław 50-086 Wrocław</td> 
+                                            <td>532 169 306<br>lindt@wroclavia.pl<br>https://www.lindt.pl/</td> 
+                                            <td width="500">Od 175 lat tworzymy najlepszą czekoladę według tradycyjnych wyjątkowych receptur naszych Maître Chocolatier. Nasze produkty powstają na bazie najwyższej jakości składników, zachwycając jakością, kunsztem wykonania i prawdziwie czekoladowym charakterem. Możesz je znaleźć w ponad 120 krajach na całym świecie. Każda tabliczka to niepowtarzalne doświadczenie, którym chcemy się z Tobą dzielić. 
+Historia Lindt & Sprüngli sięga roku 1845, kiedy to ojciec i syn zaczęli produkcję jednej z pierwszych czekolad w stałej postaci w niewielkiej cukierni Sprüngli & Son. Dzięki innowacyjnej metodzie konszowania udało się uzyskać wyróżniającą nas jedwabiście gładką konsystencję, z której słyniemy. Właśnie tak powstała prawdziwa szwajcarska czekolada! 
+Najwyższej jakości czekolada gorzka, aksamitna czekolada mleczna, wyśmienita czekolada biała i dopracowane w każdym calu praliny - mamy nadzieję, że znajdziesz w naszej ofercie swoją ulubioną czekoladę.</td> 
+                                            <td>dł: 51.097448, sz: 17.034090</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=4" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=4" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>5</td>
+                                            <td>karmello.wizyt.pl </td> 
+                                            <td>Czekoladziarnia Karmello Wrocław.</td> 
+                                            <td>Bolesława Krzywoustego 126 Wrocław 51-421 Wrocław</td> 
+                                            <td>584 326 545<br>biuro@karmello.pl<br>https://www.karmello.pl/</td> 
+                                            <td width="500">Niezwykła i intrygująca historia wyrobu czekolady sięga wieku XVII i jest związana z Hiszpanią. Dla nas przygoda z produkcją czekolady rozpoczęła się w belgijskiej Brugii.
+To niezwykle urokliwe miasteczko, gdzie wśród krętych uliczek istnieje wiele małych i niepowtarzalnych manufaktur czekolady, stało się dla właścicieli firmy inspiracją do 
+stworzenia Karmello. Ich podróżnicza pasja i miłość do czekolady połączona z chęcią odkrywania nieznanych Polakom kultur i tradycji innych narodów zaowocowała powstaniem 
+w 2010 roku fabryki w Bielsku- Białej. Zachwyt nad pięknem wyrobów belgijskich mistrzów i rozsmakowanie w wyjątkowych aromatach wzbudziły chęć przeniesienia na rodzimy grunt 
+koncepcji wysokiej jakości, niepowtarzalnych czekoladowych specjałów.</td> 
+                                            <td>dł: 51.14378, sz: 17.092546</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=5" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=5" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>6</td>
+                                            <td>magnolia.wizyt.pl </td> 
+                                            <td>kwiaciarnia "MAGNOLIA" Wrocław.</td> 
+                                            <td>Tęczowa 38 Wrocław 52-007 Wrocław</td> 
+                                            <td>478 248 468<br>magnolia@wp.pl<br></td> 
+                                            <td width="500">Kwiaciarnia Magnolia powstała z marzeń, które towarzyszyły mi w głębi serca od samego dzieciństwa… Z sentymentem wspominam zabawę kwiatami polnymi w układanie bukietów czy zasiadanie na łące i wicie wianków z kończyny dla młodszej siostry… Dziś moje marzenie o otaczaniu się pięknem kwiatów i przebywanie w ich czarujących zapachach realizuje się w mojej codziennej pracy. Współpracuję ze wspaniałymi Kobietami, które tak jak ja, kochają otaczającą nas przyrodę, są wrażliwe na piękno kwiatów, mają wysokie poczucie estetyki i cieszą się swoją pracą.</td> 
+                                            <td>dł: 51.105654, sz: 17.015840</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=7" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=7" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>7</td>
+                                            <td>woda.wizyt.pl </td> 
+                                            <td>Dystrybucja wody butelkowanej Wrocław.</td> 
+                                            <td>Klecińska 186 Wrocław 54-412 Wrocław</td> 
+                                            <td>478 458 246<br>eden-wroclaw@gmail.com<br>https://www.eden.pl/</td> 
+                                            <td width="500">Krystalicznie czysta woda źródlana Eden wypływa z najczystszych ujęć głębinowych w Polsce. Naszą wodę wydobywamy z szacunkiem dla środowiska naturalnego i z zachowaniem najwyższych norm kontroli jakości. Własne laboratoria przy rozlewniach pozwalają na regularne badania wody co 2 godziny, na każdym etapie jej wydobycia i nalewania do butli.</td> 
+                                            <td>dł: 51.11082, sz: 16.96777</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=6" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=6" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>8</td>
+                                            <td>artshop.wizyt.pl </td> 
+                                            <td>Sklep artystyczny "ArtShop" Wrocław.</td> 
+                                            <td>Piotra Skargi 23/1 Wrocław 50-082 Wrocław</td> 
+                                            <td>458 588 989<br>artshop@gmail.com<br></td> 
+                                            <td width="500">Zaopatrujemy w potrzebne materiały: artystów,  plastyków, architektów, konserwatorów, uczniów szkół plastycznych i uczelnie artystyczne od 2002 roku. Każdy odnajdzie w sieci naszych sklepów artykuły plastyczne i artystyczne potrzebne do stworzenia wielkich i małych dzieł sztuki. Nasza oferta to najwyższej jakości artykuły plastyczne zapewniające komfort pracy profesjonalistom jak i amatorom.  Zatrudniamy fachowców służących cennymi poradami. Przodujący na rynku producenci zaopatrują nasze sklepy w artykuły dla plastyków i amatorów sztuk plastycznych, a także nasz sklep internetowy w papier, farby akrylowe, olejne, farby do szkła, do tkanin i ceramiki, pędzle, sztalugi, dłuta i wiele innych. Dla mniej wymagających służymy tańszymi odpowiednikami.</td> 
+                                            <td>dł: 51.10506, sz: 17.03427</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=8" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=8" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>9</td>
+                                            <td>agd.wizyt.pl </td> 
+                                            <td>Sklep AGD Wrocław.</td> 
+                                            <td>Jerzego Bajana 67 Wrocław 54-129 Wrocław</td> 
+                                            <td>478 658 671<br>agdkowalczyk@gamil.com<br></td> 
+                                            <td width="500">Jest to firma o ugruntowanej pozycji i wieloletnim doświadczeniu. Od 2000 roku z sukcesem wzmacniamy naszą rynkową pozycję. Obecnie jesteśmy jednym z liderów  branży IT. Swoją markę budujemy na długofalowych relacjach, opartych na wysokiej jakości świadczonych usług. Dostarczamy naszym Klientom produkty największych światowych producentów. W budowaniu sukcesu bazujemy na wiedzy, doświadczeniu i innowacyjności.</td> 
+                                            <td>dł: 51.124941, sz: 16.959942</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=9" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=9" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>10</td>
+                                            <td>firo.wizyt.pl </td> 
+                                            <td>Firo zamówienia</td> 
+                                            <td>Wojska polskiego 90/2 Wrocław 48-300 Wrocław</td> 
+                                            <td>147 874 587<br>firo@wp.pl<br>http://firo.pl</td> 
+                                            <td width="500">Firo zamówienia</td> 
+                                            <td>dł: 4.3256435, sz: 6.594730</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=19" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=19" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>11</td>
+                                            <td>geronimo.wizyt.pl </td> 
+                                            <td>Geronimo sports</td> 
+                                            <td>Iwana Pawłowa 4 Wrocław 45-300 Wrocław</td> 
+                                            <td>147 852 587<br>biuro@geronimo.pl<br>http://geronimo.pl</td> 
+                                            <td width="500">Geronimo</td> 
+                                            <td>dł: 51.14378, sz: 2.197845</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=21" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=21" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr><tr>
+                                            <td>12</td>
+                                            <td>datanet.wizyt.pl </td> 
+                                            <td>Datanet</td> 
+                                            <td>Pokątna 645 Wrocław 48-301 Wrocław</td> 
+                                            <td>148 758 965<br>biuro@datanet.pl<br></td> 
+                                            <td width="500">Datanet</td> 
+                                            <td>dł: 4.784759, sz: 6.5947365</td>
+                                            <td>
+                                                <a href="edit?s=WIZYTOWKA&id=22" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=WIZYTOWKA&id=22" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                        </tr>                        </tbody>
+                    </table>
+                </li>
+              <!--UMOWA-->
+                <li>
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <caption><h4><a href="add?s=UMOWA" uk-icon="icon: plus">Dodaj do bazy </a></h4></caption>
+                        <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Domena</th>
+                                <th>Data zawarcia umowy</th>
+                                <th>Rodzaj umowy</th>
+                                <th>Opis</th>
+                                <th>Dodatkowe miejsce</th>
+                                <th>Ilość miejsca</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            <tr>
+                                           <td>23</td>
+                                           <td>woda.wizyt.pl</td>
+                                           <td>2021-05-14 01:14:00</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatkowych danych</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=23" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=23" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>29</td>
+                                           <td>geronimo.wizyt.pl</td>
+                                           <td>2021-01-18 07:30:00</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Bez</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=29" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=29" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>28</td>
+                                           <td>datanet.wizyt.pl</td>
+                                           <td>2021-01-18 07:29:00</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Bez dod</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=28" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=28" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>27</td>
+                                           <td>firo.wizyt.pl</td>
+                                           <td>2021-01-18 07:08:00</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Z dodatkowym miejscem</td> 
+                                           <td>Tak</td> 
+                                           <td>2.8</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=27" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=27" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>22</td>
+                                           <td>meddent.wizyt.pl</td>
+                                           <td>2021-01-16 01:10:00</td> 
+                                           <td>roczna</td> 
+                                           <td>Dodatkowe miejsce</td> 
+                                           <td>Tak</td> 
+                                           <td>1.3</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=22" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=22" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>21</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-11-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=21" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=21" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>20</td>
+                                           <td>karmello.wizyt.pl</td>
+                                           <td>2020-10-28 12:09:30</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=20" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=20" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>19</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-10-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=19" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=19" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>18</td>
+                                           <td>agd.wizyt.pl</td>
+                                           <td>2020-10-04 17:30:00</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=18" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=18" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>17</td>
+                                           <td>artshop.wizyt.pl</td>
+                                           <td>2020-09-30 12:10:11</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=17" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=17" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>16</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-09-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=16" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=16" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>15</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-08-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=15" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=15" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>14</td>
+                                           <td>magnolia.wizyt.pl</td>
+                                           <td>2020-07-31 20:20:10</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka z dodatowym miejscem na życzenie zamawiającego.</td> 
+                                           <td>Tak</td> 
+                                           <td>5.3</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=14" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=14" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>13</td>
+                                           <td>karmello.wizyt.pl</td>
+                                           <td>2020-07-28 12:09:30</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=13" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=13" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>12</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-07-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=12" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=12" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>11</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-06-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=11" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=11" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>10</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-05-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=10" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=10" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>8</td>
+                                           <td>woda.wizyt.pl</td>
+                                           <td>2020-05-02 20:10:20</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=8" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=8" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>9</td>
+                                           <td>karmello.wizyt.pl</td>
+                                           <td>2020-04-28 12:09:30</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=9" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=9" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>7</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-04-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=7" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=7" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>6</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-03-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=6" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=6" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>5</td>
+                                           <td>karmello.wizyt.pl</td>
+                                           <td>2020-02-28 12:09:30</td> 
+                                           <td>kwartalna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=5" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=5" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>4</td>
+                                           <td>lindt.wizyt.pl</td>
+                                           <td>2020-02-28 10:12:20</td> 
+                                           <td>miesięczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=4" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=4" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>3</td>
+                                           <td>roza.wizyt.pl</td>
+                                           <td>2020-01-24 12:24:21</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka z dodatowym miejscem na życzenie zamawiającego.</td> 
+                                           <td>Tak</td> 
+                                           <td>10.25</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=3" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=3" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>2</td>
+                                           <td>meddent.wizyt.pl</td>
+                                           <td>2020-01-03 13:21:00</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=2" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=2" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr><tr>
+                                           <td>1</td>
+                                           <td>pcserwis.wizyt.pl</td>
+                                           <td>2019-12-20 15:45:12</td> 
+                                           <td>roczna</td> 
+                                           <td>Wizytówka bez dodatowych danych.</td> 
+                                           <td>Nie</td> 
+                                           <td>0</td> 
+                                           <td>
+                                                <a href="edit?s=UMOWA&id=1" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=UMOWA&id=1" uk-icon="icon: trash" uk-tooltip="usuń"  onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td>
+                                       </tr>                        </tbody>
+                    </table>
+                </li>
+              <!--ZAMAWIAJACY-->
+                <li>
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <caption><h4><a href="add?s=ZAMAWIAJACY" uk-icon="icon: plus">Dodaj do bazy </a></h4></caption>
+                        <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Imie i nazwisko</th>
+                                <th>Nazwa firmy</th>
+                                <th>Telefon</th>
+                                <th>Email</th>
+                                <th>Adres</th>
+                                <th>Poczta</th>
+                                <th>PESEL</th>
+                                <th>NIP</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>     
+                        <tbody> 
+                            <tr>
+                                           <td>1</td> 
+                                           <td>Hubert Garecki</td> 
+                                           <td>PC Serwis</td> 
+                                           <td>478 669 946</td> 
+                                           <td>hubertg@gmail.com</td> 
+                                           <td>Iwana Pawłowa 12/3 Wrocław</td> 
+                                           <td>53-604 Wrocław</td> 
+                                           <td>47854879586</td> 
+                                           <td>4784757840</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=1" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=1" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>2</td> 
+                                           <td>Jadwiga Rodecka</td> 
+                                           <td>MedDent</td> 
+                                           <td>475 414 548</td> 
+                                           <td>radeckaj@gmail.com</td> 
+                                           <td>Śliczna 11 Wrocław</td> 
+                                           <td>50-566 Wrocław</td> 
+                                           <td>4784758965</td> 
+                                           <td>4784875986</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=2" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=2" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>3</td> 
+                                           <td>Zuzanna Korczyńska</td> 
+                                           <td></td> 
+                                           <td>748 578 265</td> 
+                                           <td>zuza.korczynska@gmail.com</td> 
+                                           <td>Wojciecha Cybulskiego 8 Wrocław</td> 
+                                           <td>52-007 Wrocław</td> 
+                                           <td>25416548495</td> 
+                                           <td>4784759613</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=3" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=3" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>4</td> 
+                                           <td>Adam Kowalski</td> 
+                                           <td>Lindt Lindor Polska</td> 
+                                           <td>148 574 954</td> 
+                                           <td>a.kowalski@lindt.pl</td> 
+                                           <td>Kurzy Targ 2 Wrocław</td> 
+                                           <td>50-114 Wrocław</td> 
+                                           <td>54875986256</td> 
+                                           <td>1452854795</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=4" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=4" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>5</td> 
+                                           <td>Wojciech Adamowicz</td> 
+                                           <td>Karmello Polska</td> 
+                                           <td>478 547 947</td> 
+                                           <td>adamowiczw@karmello.pl</td> 
+                                           <td>Kazimierza Wielkiego 43 Wrocław</td> 
+                                           <td>50-116 Wrocław</td> 
+                                           <td>4875847895</td> 
+                                           <td>3265895784</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=5" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=5" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>6</td> 
+                                           <td>Roman Hojnowski</td> 
+                                           <td>Eden Wrocław</td> 
+                                           <td>478 874 587</td> 
+                                           <td>hojnowski.roman@eden.pl</td> 
+                                           <td>Piłsudskiego 72 Wrocław</td> 
+                                           <td>50-529 Wrocław</td> 
+                                           <td>6254789587</td> 
+                                           <td>4784579265</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=6" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=6" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>7</td> 
+                                           <td>Marcelina Gazda</td> 
+                                           <td>ArtDhop</td> 
+                                           <td>475 947 356</td> 
+                                           <td>gazda_marce@o2.pl</td> 
+                                           <td>Skwierzyńska 27 Wrocław</td> 
+                                           <td>53-521 Wrocław</td> 
+                                           <td>5478475895</td> 
+                                           <td>3526487598</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=7" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=7" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr><tr>
+                                           <td>8</td> 
+                                           <td>Jan Kowalczyk</td> 
+                                           <td>AGD Kowalczyk</td> 
+                                           <td>147 958 125</td> 
+                                           <td>agdkowalczyk@gamil.com</td> 
+                                           <td>Jerzego Bajana 68 Wrocław</td> 
+                                           <td>54-129 Wrocław</td> 
+                                           <td>2541578495</td> 
+                                           <td>2587495875</td>
+                                           <td>
+                                                <a href="edit?s=ZAMAWIAJACY&id=8" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=ZAMAWIAJACY&id=8" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                            </td> 
+                                       </tr>                        </tbody>
+                    </table>
+                </li>
+              <!--FAKTURA-->
+                <li>
+                    <table class="uk-table uk-table-hover uk-table-divider">
+                        <caption><h4><a href="add?s=FAKTURA" uk-icon="icon: plus">Dodaj do bazy </a></h4></caption>
+                        <thead>
+                            <tr>
+                                <th>Lp</th>
+                                <th>Domena</th>
+                                <th>Imie i nazwisko</th>
+                                <th>Adres</th>
+                                <th>Telefon</th>
+                                <th>PESEL, NIP</th>
+                                <th>Data zawarcia umowy</th>
+                                <th>Rabat</th>
+                                <th>Kwota Netto</th>
+                                <th>Podatek VAT</th>
+                                <th>Kwota brutto</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>    
+                        <tbody> 
+                            <tr>
+                                            <td>28</td>
+                                            <td>datanet.wizyt.pl</td> 
+                                            <td>Jan Kowalczyk</td> 
+                                            <td>Jerzego Bajana 68<br>54-129 Wrocław</td> 
+                                            <td>147 958 125</td> 
+                                            <td>2541578495, 2587495875</td>
+                                            <td>2021-01-18</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>3.6</td> 
+                                            <td>53.6</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=28" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=28" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>26</td>
+                                            <td>artshop.wizyt.pl</td> 
+                                            <td>Marcelina Gazda</td> 
+                                            <td>Skwierzyńska 27<br>53-521 Wrocław</td> 
+                                            <td>475 947 356</td> 
+                                            <td>5478475895, 3526487598</td>
+                                            <td>2021-01-31</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>3.6</td> 
+                                            <td>53.6</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=26" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=26" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>24</td>
+                                            <td>pcserwis.wizyt.pl</td> 
+                                            <td>Hubert Garecki</td> 
+                                            <td>Iwana Pawłowa 12/3<br>53-604 Wrocław</td> 
+                                            <td>478 669 946</td> 
+                                            <td>47854879586, 4784757840</td>
+                                            <td>2021-01-16</td> 
+                                            <td>0</td> 
+                                            <td>12</td> 
+                                            <td>3.62</td> 
+                                            <td>15.62</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=24" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=24" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>21</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-11-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=21" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=21" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>20</td>
+                                            <td>karmello.wizyt.pl</td> 
+                                            <td>Wojciech Adamowicz</td> 
+                                            <td>Kazimierza Wielkiego 43<br>50-116 Wrocław</td> 
+                                            <td>478 547 947</td> 
+                                            <td>4875847895, 3265895784</td>
+                                            <td>2020-10-28</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>11.5</td> 
+                                            <td>61.5</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=20" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=20" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>19</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-10-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=19" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=19" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>18</td>
+                                            <td>agd.wizyt.pl</td> 
+                                            <td>Jan Kowalczyk</td> 
+                                            <td>Jerzego Bajana 68<br>54-129 Wrocław</td> 
+                                            <td>147 958 125</td> 
+                                            <td>2541578495, 2587495875</td>
+                                            <td>2020-10-04</td> 
+                                            <td>0</td> 
+                                            <td>205</td> 
+                                            <td>47.15</td> 
+                                            <td>252.15</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=18" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=18" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>17</td>
+                                            <td>artshop.wizyt.pl</td> 
+                                            <td>Marcelina Gazda</td> 
+                                            <td>Skwierzyńska 27<br>53-521 Wrocław</td> 
+                                            <td>475 947 356</td> 
+                                            <td>5478475895, 3526487598</td>
+                                            <td>2020-09-30</td> 
+                                            <td>0</td> 
+                                            <td>205</td> 
+                                            <td>47.15</td> 
+                                            <td>252.15</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=17" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=17" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>16</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Hubert Garecki</td> 
+                                            <td>Iwana Pawłowa 12/3<br>53-604 Wrocław</td> 
+                                            <td>478 669 946</td> 
+                                            <td>47854879586, 4784757840</td>
+                                            <td>2020-08-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.44</td> 
+                                            <td>18.44</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=16" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=16" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>15</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-08-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=15" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=15" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>14</td>
+                                            <td>magnolia.wizyt.pl</td> 
+                                            <td>Zuzanna Korczyńska</td> 
+                                            <td>Wojciecha Cybulskiego 8<br>52-007 Wrocław</td> 
+                                            <td>748 578 265</td> 
+                                            <td>25416548495, 4784759613</td>
+                                            <td>2020-07-31</td> 
+                                            <td>0</td> 
+                                            <td>220</td> 
+                                            <td>50.6</td> 
+                                            <td>270.6</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=14" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=14" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>13</td>
+                                            <td>karmello.wizyt.pl</td> 
+                                            <td>Wojciech Adamowicz</td> 
+                                            <td>Kazimierza Wielkiego 43<br>50-116 Wrocław</td> 
+                                            <td>478 547 947</td> 
+                                            <td>4875847895, 3265895784</td>
+                                            <td>2020-07-28</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>11.5</td> 
+                                            <td>61.5</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=13" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=13" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>12</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-06-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=12" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=12" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>11</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-06-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=11" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=11" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>10</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-05-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=10" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=10" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>9</td>
+                                            <td>karmello.wizyt.pl</td> 
+                                            <td>Wojciech Adamowicz</td> 
+                                            <td>Kazimierza Wielkiego 43<br>50-116 Wrocław</td> 
+                                            <td>478 547 947</td> 
+                                            <td>4875847895, 3265895784</td>
+                                            <td>2020-04-28</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>11.5</td> 
+                                            <td>61.5</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=9" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=9" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>8</td>
+                                            <td>woda.wizyt.pl</td> 
+                                            <td>Roman Hojnowski</td> 
+                                            <td>Piłsudskiego 72<br>50-529 Wrocław</td> 
+                                            <td>478 874 587</td> 
+                                            <td>6254789587, 4784579265</td>
+                                            <td>2020-05-02</td> 
+                                            <td>0</td> 
+                                            <td>205</td> 
+                                            <td>47.15</td> 
+                                            <td>252.15</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=8" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=8" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>7</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-04-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=7" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=7" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>6</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-03-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=6" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=6" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>5</td>
+                                            <td>karmello.wizyt.pl</td> 
+                                            <td>Wojciech Adamowicz</td> 
+                                            <td>Kazimierza Wielkiego 43<br>50-116 Wrocław</td> 
+                                            <td>478 547 947</td> 
+                                            <td>4875847895, 3265895784</td>
+                                            <td>2020-02-28</td> 
+                                            <td>0</td> 
+                                            <td>50</td> 
+                                            <td>11.5</td> 
+                                            <td>61.5</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=5" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=5" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>4</td>
+                                            <td>lindt.wizyt.pl</td> 
+                                            <td>Adam Kowalski</td> 
+                                            <td>Kurzy Targ 2<br>50-114 Wrocław</td> 
+                                            <td>148 574 954</td> 
+                                            <td>54875986256, 1452854795</td>
+                                            <td>2020-02-28</td> 
+                                            <td>0</td> 
+                                            <td>15</td> 
+                                            <td>3.45</td> 
+                                            <td>18.45</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=4" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=4" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>3</td>
+                                            <td>roza.wizyt.pl</td> 
+                                            <td>Zuzanna Korczyńska</td> 
+                                            <td>Wojciecha Cybulskiego 8<br>52-007 Wrocław</td> 
+                                            <td>748 578 265</td> 
+                                            <td>25416548495, 4784759613</td>
+                                            <td>2020-01-24</td> 
+                                            <td>0</td> 
+                                            <td>245</td> 
+                                            <td>56.35</td> 
+                                            <td>301.35</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=3" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=3" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>2</td>
+                                            <td>meddent.wizyt.pl</td> 
+                                            <td>Jadwiga Rodecka</td> 
+                                            <td>Śliczna 11<br>50-566 Wrocław</td> 
+                                            <td>475 414 548</td> 
+                                            <td>4784758965, 4784875986</td>
+                                            <td>2020-01-03</td> 
+                                            <td>0</td> 
+                                            <td>205</td> 
+                                            <td>47.15</td> 
+                                            <td>252.15</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=2" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=2" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr><tr>
+                                            <td>1</td>
+                                            <td>pcserwis.wizyt.pl</td> 
+                                            <td>Hubert Garecki</td> 
+                                            <td>Iwana Pawłowa 12/3<br>53-604 Wrocław</td> 
+                                            <td>478 669 946</td> 
+                                            <td>47854879586, 4784757840</td>
+                                            <td>2019-12-20</td> 
+                                            <td>0</td> 
+                                            <td>205</td> 
+                                            <td>47.15</td> 
+                                            <td>252.15</td> 
+                                            <td>
+                                                <a href="edit?s=FAKTURA&id=1" uk-icon="icon: file-edit" uk-tooltip="edytuj"></a>
+                                                <a href="delete?s=FAKTURA&id=1" uk-icon="icon: trash" uk-tooltip="usuń" onclick="return confirm('Jesteś pewien, że chcesz usunąć ten rekord?');"></a>
+                                             </td>
+                                        </tr>                        </tbody>
+                    </table>
+                </li>
+            </ul>
+                                </main> 
+    <!--FOOTER-->    
+        <footer>
+            <div id="rights">
+                <p>Dominika Rzepka &copy; 2021</p>
+            </div>
+        </footer>
+    </body>
+</html>

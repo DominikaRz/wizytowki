@@ -1,0 +1,564 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+        <!--CSS-->
+        <link rel="stylesheet" href="css/uikit.css"/>
+        <link rel="stylesheet" href="css/uikit-rtl.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css"/>
+
+        <style type="text/css">
+            ul,li { margin:0; padding:0; list-style:none;}
+            .label { color:#000; font-size:16px;}
+        </style>
+        <!--JS-->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/uikit.js"></script>
+        <script src="js/uikit-icons.js"></script>
+        <script>
+            function sendData() {
+                const XHR = new XMLHttpRequest();
+                const FD = new FormData(form); 
+                XHR.onreadystatechange = function () {
+                    var result = document.getElementById("result");
+                    if (XHR.readyState === 1 || XHR.readyState === 2 || XHR.readyState === 3) {
+                        result.innerHTML = "<div class=\"uk-animation-slide-bottom-medium\" uk-alert>Wysyłanie ...</div>";
+                    }
+
+                    if (XHR.readyState === 4 && XHR.status === 200) {
+                        result.innerHTML = "<div class=\"uk-alert uk-alert-success uk-animation-slide-bottom-medium\" uk-alert><a class=\"uk-alert-close\" uk-close></a>Wiadomość wysłana!</div>";
+                        setTimeout(function () {
+                            window.location.href = "view"; //will redirect to your blog page (an ex: blog.html)
+                        }, 3000);
+                        
+                    }
+                    else if(XHR.readyState === 4 && XHR.status === 404) {
+                        result.innerHTML = "<div class=\"uk-alert uk-alert-warrning uk-animation-slide-bottom-medium\" uk-alert><a class=\"uk-alert-close\" uk-close></a>Wiadomość wysłana!</div>";
+                    }
+                    else if(XHR.readyState === 4 && XHR.status !== 200 || XHR.readyState === 4 && XHR.status !== 404) {
+                        var result = document.getElementById("result");
+                        document.querySelector('.message').innerHTML = '<div class="uk-alert uk-alert-danger uk-animation-slide-bottom-medium" uk-alert><a class="uk-alert-close" uk-close></a>Wystąpił błąd!</div>';
+                    }
+                };
+                                                XHR.open("POST", "add_resp?s=WIZYTOWKA");
+                XHR.send(FD); 
+            }
+        </script>
+
+        <!--ICONS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css"/>
+        <!--FONTS-->
+        <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Combo' rel='stylesheet'>
+
+        <!-- -->
+
+        <title>add</title>
+    </head>
+    <body>
+    <!--NAVBAR-->
+        
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" style="position: relative; z-index: 980;" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li uk-toggle="target: #struktura"><a href="#">Struktura</a></li>
+                        <li class="uk-active"><a href="main">Strona główna</a></li>
+                        <li>
+                            <a href="view">CRUD</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="view">Branże</a></li>
+                                    <li><a href="view">Wizytówki</a></li>
+                                    <li><a href="view">Zamawiający</a></li>
+                                    <li><a href="view">Umowy</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="view?s=FAKTURA">Dokumenty</a></li>
+                        <li><a href="pomoc">Pomoc</a></li> <!-- Mechanika strony, wygląd bazy, działanie bazy-->
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="out">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+            <div id="struktura" uk-offcanvas="overlay: true">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+                    <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                        <li class="uk-active">Struktura bazy</li>
+                        <li class="uk-parent">
+                            <a href="#">BRANZA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li>nazwa_branza (20)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">BRANZA_WIZYT</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-primary">id_branza FK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">WIZYTOWKA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_wizytowka</li>
+                                <li>domena_wizyt (45)</li>
+                                <li>logo</li>
+                                <li>opis_skrocony</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">DANE_WIZYT</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li>adr_ul (56)</li>
+                                <li>adr_nr (10)</li>
+                                <li>adr_miast (40)</li>
+                                <li>adr_kod (6)</li>
+                                <li>adr_pocz (40)</li>
+                                <li>telefon (11)</li>
+                                <li>mail (100)</li>
+                                <li>str_int (63)</li>
+                                <li>opis (2000)</li>
+                                <li>geo_lat (18)</li>
+                                <li>geo_lon (18)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">FORMA_UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id PK</li>
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li>nazwa (10)</li>
+                                <li>czas_zawarcia (datetime)</li>
+                                <li>czas_zakonczenia (datetime)</li>
+                                <li>serwer (bool)</li>
+                                <li>wielkosc_serwer (float)</li>
+                                <li>opis (400)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">WIZYT_UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-primary">id_wizytowka FK</li>
+                                <li class="uk-text-primary">id_umowa FK</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">UMOWA</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_umowa PK</li>
+                                <li class="uk-text-primary">id_zamawiajacy FK</li>
+                                <li>data (date)</li>
+                                <li>netto (float)</li>
+                                <li>rabat (int)</li>
+                                <li>VAT (float)</li>
+                                <li>kwota (float)</li>
+                            </ul>
+                        </li>
+                        <li class="uk-nav-divider"></li>
+                        <li class="uk-parent">
+                            <a href="#">ZAMAWIAJACY</a>
+                            <ul class="uk-nav-sub">
+                                <li class="uk-text-success">id_zamawiajacy PK</li>
+                                <li>imie (13)</li>
+                                <li>nazwisko (27)</li>
+                                <li>nazwa_firmy (40)</li>
+                                <li>telefon (11)</li>
+                                <li>mail (100)</li>
+                                <li>adres_ul (56)</li>
+                                <li>adres_nr (10)</li>
+                                <li>adres_miast (40)</li>
+                                <li>adres_kod (6)</li>
+                                <li>adres_pocz (40)</li>
+                                <li>PESEL (11)</li>
+                                <li>NIP (10)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    <!--MAIN-->
+        <main class="uk-padding uk-margin">
+            <div id="result"></div>
+            <form id="ThisForm" class="uk-form-stacked uk-position-relative" method="POST" novalidate><div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Domena *</label>
+                                    <div class="uk-form-controls">
+                                        <input id="domena" class="uk-input uk-form-width-medium" name="domena" type="text" placeholder="nazwa.wizyt.pl" required minlength="3" maxlength="45" pattern="^[a-z]*.wizyt.pl$">
+                                        <span id="dDomena" class="uk-text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Branże *</label>
+                                    <select class="uk-select uk-form-width-medium" name="multi[]" multiple id="multi" required><option value="1"> administracja</option><option value="2"> budownictwo</option><option value="3"> edukacja</option><option value="4"> ekonomia</option><option value="5"> elektronika</option><option value="6"> gastronomia</option><option value="7"> handel</option><option value="8"> medycyna</option><option value="9"> motoryzacja</option><option value="10"> poligrafia</option><option value="11"> prawo</option><option value="12"> rekreacja</option><option value="13"> rolnictwo</option><option value="14"> technika</option><option value="15"> uroda</option><option value="16"> usługi</option><option value="17"> wyposarzenie wnętrz</option><option value="18"> zdrowie</option><option value="19"> inne</option><option value="23"> finansowość</option><option value="24"> finanse</option><option value="25"> gabrayty</option></select>
+                                    <span id="dBranze" class="uk-text-danger"></span>
+                                </div> 
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Skrócony opis</label>
+                                    <div class="uk-form-controls">    
+                                        <input id="opis_skr" class="uk-input uk-form-width-large" name="opis_skr" type="text" placeholder="np. kawiarnia Dobre Ziarno">
+                                        <span id="dOpisSkr" class="uk-text-danger"></span>
+                                    </div>  
+                                </div>
+                                <label class="uk-form-label" for="form-stacked-text">Adres</label>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-2-5">
+                                        <input id="ul" class="uk-input" type="text" name="ul" placeholder="ulica" minlength="5" maxlength="56" pattern="^[A-ZĄĆŁÓŚŻŹ][a-ząćęłóśżźA-Z ]*$">
+                                        <span id="dUl" class="uk-text-danger"></span>
+                                    </div>
+                                    <div class="uk-width-1-5">
+                                        <input id="nr" class="uk-input" type="text" name="nr" placeholder="numer" maxlength="10" pattern="^[0-9A-Za-z/]*$">
+                                        <span id="dNr" class="uk-text-danger"></span>
+                                    </div>
+                                    <br>
+                                    <div class="uk-width-2-5">
+                                        <input id="miasto" class="uk-input" type="text" name="miasto" maxlength="40" pattern="^[A-ZĄĆŁÓŚŻŹ][a-ząćęłóśżźA-Z ]*$" placeholder="miasto">
+                                        <span id="dMiasto" class="uk-text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-1-5">
+                                        <input id="kod" class="uk-input" type="text" name="kod" placeholder="kod pocztowy" maxlength="6" pattern="^([0-9]{2})-([0-9]{3})*$">
+                                        <span id="dKod" class="uk-text-danger"></span>
+                                    </div>
+                                    <div class="uk-width-3-5">
+                                        <input id="poczta" class="uk-input" type="text" name="poczta" placeholder="poczta" maxlength="40" pattern="^[A-ZĄĆŁÓŚŻŹ][a-ząćęłóśżźA-Z ]*$">
+                                        <span id="dPoczta" class="uk-text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-1-2">
+                                        <label class="uk-form-label" for="form-stacked-text">Telefon *</label>
+                                        <div class="uk-form-controls">    
+                                            <input id="tel" class="uk-input uk-form-width-large" name="tel" type="phone" maxlength="11" pattern="^([0-9]{3}) ([0-9]{3}) ([0-9]{3})*$" placeholder="np. 123 456 789" required>
+                                        </div> 
+                                        <span id="dTel" class="uk-text-danger"></span>
+                                    </div>
+                                    <div class="uk-width-1-2">
+                                        <label class="uk-form-label" for="form-stacked-text">Email *</label>
+                                        <div class="uk-form-controls">    
+                                            <input id="mail" class="uk-input uk-form-width-large" name="mail" type="text" placeholder="np. nazwa@mail.com" maxlength="100" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" required>
+                                            <span id="dMail" class="uk-text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Strona internetowa</label>
+                                    <div class="uk-form-controls">    
+                                        <input id="str" class="uk-input uk-form-width-large" name="str" maxlength="63" pattern="https?://.+"  type="text" placeholder="np. https://nazwa.pl">
+                                        <span id="dStr" class="uk-text-danger"></span>
+                                    </div>  
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Opis działalności *</label>
+                                    <div class="uk-form-controls">    
+                                        <textarea id="opis" class="uk-textarea" rows="6" name="opis" placeholder="Opisz tutaj..." required></textarea>
+                                        <span id="dOpis" class="uk-text-danger"></span>
+                                    </div>  
+                                </div>
+                                <label class="uk-form-label" for="form-stacked-text">Lokalizacja</label>
+                                <div class="uk-grid-small" uk-grid>
+                                    <div class="uk-width-1-2">
+                                        <input id="lat" class="uk-input" type="text" name="lat" placeholder="szerokość geograficzna" maxlength="18" pattern="^([0-9]){1,2}.([0-9]{1,16})*$">
+                                        <span id="dLat" class="uk-text-danger"></span>
+                                    </div>
+                                    <div class="uk-width-1-2">
+                                        <input id="lon" class="uk-input" type="text" name="lon" placeholder="długość geograliczna" maxlength="18" pattern="^([0-9]){1,2}.([0-9]{1,16})*$">
+                                        <span id="dLon" class="uk-text-danger"></span>
+                                    </div>
+                                </div>
+                                </div><div class="uk-margin">
+                                    <button class="uk-button uk-button-default uk-modal-close" type="reset" onclick="window.location.href='view'">Anuluj</button>
+                                    <button class="uk-button" type="submit">Zapisz</button>
+                                </div>
+                            </form> 
+                            <script>
+                                const form = document.getElementById("ThisForm");
+                                
+                                    const opskr = document.getElementById("opis_skr");
+                                    const ul = document.getElementById("ul");
+                                    const nr = document.getElementById("nr");
+                                    const mias = document.getElementById("miasto");
+                                    const kod = document.getElementById("kod");
+                                    const pocz = document.getElementById("poczta");
+                                    const str = document.getElementById("str");
+                                    const lat = document.getElementById("lat");
+                                    const lon = document.getElementById("lon");
+                                    const dome = document.getElementById("domena");
+                                    const bran = document.getElementById("multi");
+                                    const tel = document.getElementById("tel");
+                                    const mail = document.getElementById("mail");
+                                    const opis = document.getElementById("opis");
+                                const opskrError = document.getElementById("dOpisSkr");
+                                const ulError = document.getElementById("dUl");
+                                const nrError = document.getElementById("dNr");
+                                const miasError = document.getElementById("dMiasto");
+                                const kodError = document.getElementById("dKod");
+                                const poczError = document.getElementById("dPoczta");
+                                const strError = document.getElementById("dStr");
+                                const latError = document.getElementById("dLat");
+                                const lonError = document.getElementById("dLon");
+                                const domeError = document.getElementById("dDomena");
+                                const branError = document.getElementById("dBranze");
+                                const telError = document.getElementById("dTel");
+                                const mailError = document.getElementById("dMail");
+                                const opisError = document.getElementById("dOpis");
+                                opskr.addEventListener('input', function (event) {
+                                    if (opskr.validity.valid) {
+                                        opskrError.innerHTML = '';
+                                        opskrError.className = 'uk-text-danger';opskr.className = 'uk-input uk-form-width-large uk-form-success';
+                                    }
+                                    else showError1();
+                                });
+                                ul.addEventListener('input', function (event) {
+                                    if (ul.validity.valid) {
+                                        ulError.innerHTML = '';
+                                        ulError.className = 'uk-text-danger';ul.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError2();
+                                });
+                                nr.addEventListener('input', function (event) {
+                                    if (nr.validity.valid) {
+                                        nrError.innerHTML = '';
+                                        nrError.className = 'uk-text-danger';nr.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError3();
+                                });
+                                mias.addEventListener('input', function (event) {
+                                    if (mias.validity.valid) {
+                                        miasError.innerHTML = '';
+                                        miasError.className = 'uk-text-danger';mias.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError4();
+                                });
+                                kod.addEventListener('input', function (event) {
+                                    if (kod.validity.valid) {
+                                        kodError.innerHTML = '';
+                                        kodError.className = 'uk-text-danger';kod.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError5();
+                                });
+                                pocz.addEventListener('input', function (event) {
+                                    if (pocz.validity.valid) {
+                                        poczError.innerHTML = '';
+                                        poczError.className = 'uk-text-danger';pocz.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError6();
+                                });
+                                str.addEventListener('input', function (event) {
+                                    if (str.validity.valid) {
+                                        strError.innerHTML = '';
+                                        strError.className = 'uk-text-danger';str.className = 'uk-input uk-form-width-large uk-form-success';
+                                    }
+                                    else showError7();
+                                });
+                                lat.addEventListener('input', function (event) {
+                                    if (lat.validity.valid) {
+                                        latError.innerHTML = '';
+                                        latError.className = 'uk-text-danger';lat.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError8();
+                                });
+                                lon.addEventListener('input', function (event) {
+                                    if (lon.validity.valid) {
+                                        lonError.innerHTML = '';
+                                        lonError.className = 'uk-text-danger';lon.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError9();
+                                });
+                                dome.addEventListener('input', function (event) {
+                                    if (dome.validity.valid) {
+                                        domeError.innerHTML = '';
+                                        domeError.className = 'uk-text-danger';dome.className = 'uk-input uk-form-width-medium uk-form-success';
+                                    }
+                                    else showError10();
+                                });
+                                bran.addEventListener('input', function (event) {
+                                    if (bran.validity.valid) {
+                                        branError.innerHTML = '';
+                                        branError.className = 'uk-text-danger';bran.className = 'uk-select uk-form-width-medium uk-form-success';
+                                    }
+                                    else showError11();
+                                });
+                                tel.addEventListener('input', function (event) {
+                                    if (tel.validity.valid) {
+                                        telError.innerHTML = '';
+                                        telError.className = 'uk-text-danger';tel.className = 'uk-input uk-form-success';
+                                    }
+                                    else showError12();
+                                });
+                                mail.addEventListener('input', function (event) {
+                                    if (mail.validity.valid) {
+                                        mailError.innerHTML = '';
+                                        mailError.className = 'uk-text-danger';mail.className = 'uk-input uk-form-width-large uk-form-success';
+                                    }
+                                    else showError13();
+                                });
+                                opis.addEventListener('input', function (event) {
+                                    if (opis.validity.valid) {
+                                        opisError.innerHTML = '';
+                                        opisError.className = 'uk-text-danger';opis.className = 'uk-textarea uk-form-success';
+                                    }
+                                    else showError14();
+                                });
+                                window.addEventListener("load", function() {
+                                    const form = document.getElementById("ThisForm");
+                                    form.addEventListener("submit", function (event) {
+                                        if(!opskr.validity.valid) {showError1();}
+                                            if(!ul.validity.valid) {showError2();}
+                                            if(!nr.validity.valid) {showError3();}
+                                            if(!mias.validity.valid) {showError4();}
+                                            if(!kod.validity.valid) {showError5();}
+                                            if(!pocz.validity.valid) {showError6();}
+                                            if(!str.validity.valid) {showError7();}
+                                            if(!lat.validity.valid) {showError8();}
+                                            if(!lon.validity.valid) {showError9();}
+                                            if(!dome.validity.valid) {showError10();}
+                                            else if(!bran.validity.valid) {showError11();}
+                                            else if(!tel.validity.valid) {showError12();}
+                                            else if(!mail.validity.valid) {showError13();}
+                                            else if(!opis.validity.valid) {showError14();}
+                                            
+                                        else{sendData();}
+                                        event.preventDefault();
+                                    });
+                                });
+                                function showError1() {
+                                      if(opskr.validity.valueMissing) {
+                                        opskrError.textContent = 'Pole wymagane!';opskr.className = 'uk-input uk-form-width-large uk-form-danger';}
+                                      else if(opskr.validity.patternMismatch) {
+                                        opskrError.textContent = 'Niepoprawny zapis!';opskr.className = 'uk-input uk-form-width-large uk-form-danger';
+                                    }
+                                  }
+                                function showError2() {
+                                      if(ul.validity.valueMissing) {
+                                        ulError.textContent = 'Pole wymagane!';ul.className = 'uk-input uk-form-danger';}
+                                      else if(ul.validity.patternMismatch) {
+                                        ulError.textContent = 'Niepoprawny zapis!';ul.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError3() {
+                                      if(nr.validity.valueMissing) {
+                                        nrError.textContent = 'Pole wymagane!';nr.className = 'uk-input uk-form-danger';}
+                                      else if(nr.validity.patternMismatch) {
+                                        nrError.textContent = 'Niepoprawny zapis!';nr.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError4() {
+                                      if(mias.validity.valueMissing) {
+                                        miasError.textContent = 'Pole wymagane!';mias.className = 'uk-input uk-form-danger';}
+                                      else if(mias.validity.patternMismatch) {
+                                        miasError.textContent = 'Niepoprawny zapis!';mias.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError5() {
+                                      if(kod.validity.valueMissing) {
+                                        kodError.textContent = 'Pole wymagane!';kod.className = 'uk-input uk-form-danger';}
+                                      else if(kod.validity.patternMismatch) {
+                                        kodError.textContent = 'Niepoprawny zapis!';kod.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError6() {
+                                      if(pocz.validity.valueMissing) {
+                                        poczError.textContent = 'Pole wymagane!';pocz.className = 'uk-input uk-form-danger';}
+                                      else if(pocz.validity.patternMismatch) {
+                                        poczError.textContent = 'Niepoprawny zapis!';pocz.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError7() {
+                                      if(str.validity.valueMissing) {
+                                        strError.textContent = 'Pole wymagane!';str.className = 'uk-input uk-form-width-large uk-form-danger';}
+                                      else if(str.validity.patternMismatch) {
+                                        strError.textContent = 'Niepoprawny zapis!';str.className = 'uk-input uk-form-width-large uk-form-danger';
+                                    }
+                                  }
+                                function showError8() {
+                                      if(lat.validity.valueMissing) {
+                                        latError.textContent = 'Pole wymagane!';lat.className = 'uk-input uk-form-danger';}
+                                      else if(lat.validity.patternMismatch) {
+                                        latError.textContent = 'Niepoprawny zapis!';lat.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError9() {
+                                      if(lon.validity.valueMissing) {
+                                        lonError.textContent = 'Pole wymagane!';lon.className = 'uk-input uk-form-danger';}
+                                      else if(lon.validity.patternMismatch) {
+                                        lonError.textContent = 'Niepoprawny zapis!';lon.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError10() {
+                                      if(dome.validity.valueMissing) {
+                                        domeError.textContent = 'Pole wymagane!';dome.className = 'uk-input uk-form-width-medium uk-form-danger';}
+                                      else if(dome.validity.patternMismatch) {
+                                        domeError.textContent = 'Niepoprawny zapis!';dome.className = 'uk-input uk-form-width-medium uk-form-danger';
+                                    }
+                                  }
+                                function showError11() {
+                                      if(bran.validity.valueMissing) {
+                                        branError.textContent = 'Pole wymagane!';bran.className = 'uk-select uk-form-width-medium uk-form-danger';}
+                                      else if(bran.validity.patternMismatch) {
+                                        branError.textContent = 'Niepoprawny zapis!';bran.className = 'uk-select uk-form-width-medium uk-form-danger';
+                                        var sel = document.getElementById("multi");
+                                        //get the selected option
+                                        var selectedText = sel.options[sel.selectedIndex].text;
+                                        return true;
+                                    }
+                                  }
+                                function showError12() {
+                                      if(tel.validity.valueMissing) {
+                                        telError.textContent = 'Pole wymagane!';tel.className = 'uk-input uk-form-danger';}
+                                      else if(tel.validity.patternMismatch) {
+                                        telError.textContent = 'Niepoprawny zapis!';tel.className = 'uk-input uk-form-danger';
+                                    }
+                                  }
+                                function showError13() {
+                                      if(mail.validity.valueMissing) {
+                                        mailError.textContent = 'Pole wymagane!';mail.className = 'uk-input uk-form-width-large uk-form-danger';}
+                                      else if(mail.validity.patternMismatch) {
+                                        mailError.textContent = 'Niepoprawny zapis!';mail.className = 'uk-input uk-form-width-large uk-form-danger';
+                                    }
+                                  }
+                                function showError14() {
+                                      if(opis.validity.valueMissing) {
+                                        opisError.textContent = 'Pole wymagane!';opis.className = 'uk-textarea uk-form-danger';}
+                                      else if(opis.validity.patternMismatch) {
+                                        opisError.textContent = 'Niepoprawny zapis!';opis.className = 'uk-textarea uk-form-danger';
+                                    }
+                                  }
+                                </script>            <script src="js/jquery-3.2.1.min.js"></script>
+    	    <script src="js/jquery.multiselect.js"></script>
+            <script>
+                $('#multi').multiselect({
+                    columns: 1,
+                    placeholder: 'Wybierz branże',
+                    search: true
+                });
+            </script> 
+        </main> 
+    <!--FOOTER-->    
+        <footer>
+            <p>Dominika Rzepka &copy; 2021</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,232 @@
+/*      BACKGROUND         */
+html,body{ overflow-x: hidden;}
+html{ height: 100%;}
+body {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100%;
+}
+
+/*------NAVBAR-----*/
+li{ list-style-type: none;}
+#myNavbar{ margin-block-end: 0px; margin-block-start: 0px;}
+#myNavbar .uk-button{ border: none;}
+#offcanvas-slide{ font-family: 'Combo'; text-align: center; }
+.ic1, .ic2, .ic3, .ic4, .ic5{ color:black;}
+.uk-position-fixed{z-index: 100;}
+/*----SLIDER-----*/
+#slider{
+    height: 100vh;
+    width: 100vw;    /*  */
+    color: black;
+    font-family: 'Caveat';
+    /*border-bottom: 1px solid #EFEBE9;*/
+    z-index: 2;
+}
+#short::before{
+  content: "";
+  background: url('../img/profile.jpg') center top;
+  background-repeat: no-repeat;
+  opacity: 0.26;
+  top: 0;  left: 0;  bottom: 0;  right: 0;
+  position: absolute;
+  z-index: -1;
+  height: 100vh;
+}
+#slider img{ width: 10vw;}
+#slider h1{
+  font-family: 'Charmonman';
+  text-align: center;
+}
+#slider h3{
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Caveat';
+}
+#slider p{
+  font-size: 20px;
+  text-align: center;
+}
+#back::before{
+  background-color: #0000;
+  z-index: -1;
+  top: 0;  left: 0;  bottom: 0;  right: 0;
+  position: absolute;
+}
+
+/*----ABOUT-----*/
+#about{
+  font-family: 'Caveat';
+  background-color: #0E4206;
+  color: white;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  padding-right: 7rem;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+  z-index: -1;
+}
+#about p{ font-family: 'Caveat'; font-size: 20px;}
+#about h3{ font-family: 'Caveat'; font-size: 25px; font-weight: 700;}
+#about h2{ font-family: 'Charmonman'; font-weight: bold; color: #0E4206; font-weight: 900;}
+#about img{ border: 3px solid white;}
+.hr1{ border: 5px solid #F0EFDD;}
+.hr2{ border: 2px solid #F0EFDD;}
+#more{ background-color: #F0EFDD;}
+.child0 { /*góra*/
+  background-color: white;
+  padding: 1rem;
+  border: 2px solid #0E4206;
+  position: absolute;
+  left: 3%;
+  margin-top: 12rem;
+  z-index: 3;
+}
+
+/*----PORTFOLIO-----*/
+#portf{
+  background-color: #0E4206;
+  padding-top: 1rem;
+  padding-right: 3rem;
+  color: black;
+  margin-left: -3rem;
+}
+#content{ background-color: none;}
+#portf  img{ border: 3px solid white; opacity: 0.96;}
+#portf .uk-button{ font-family: 'Charmonman'; font-weight: bold; text-transform: none; font-size: 2rem;}
+#portf .uk-card{  background-color: #F0EFDD;  color: silver; }
+.h3ader{
+  font-family: 'Charmonman';
+  padding-top: 0px;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  text-shadow: -2px 1px 25px black;
+  font-weight: 900;
+  margin-block-start: 0;
+  margin-block-end: 2rem;
+}
+.h4ader{
+  font-family: 'Charmonman';
+  padding-top: 0px;
+  text-align: center;
+  color: #434343;
+  text-shadow: -2px 1px 25px black;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.h1ader{
+  font-family: 'Charmonman';
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  font-weight: 900;
+  color: #0E4206;
+  border: 2px solid #0E4206;
+  background-color: #F0EFDD;
+  padding: 1rem;
+}
+#portf h2{ font-family: 'Charmonman'; font-weight: bold;}
+#headerP .uk-grid > * { padding-left: 0px; padding-right: 0px;}
+#headerP{ margin-right: 4rem;}
+.child1 { /*góra*/
+  position: absolute;
+  right: 10%;
+  margin-top: 8%;
+  z-index: 3;
+}
+.warr{
+  background-color: #F0EFDD;;
+  text-align: center;
+  height: 90vh;
+}
+.uk-modal-dialog{ background-color: none!important;}
+/*----BLOG-----*/
+#blog{
+  background-color: #0E4206;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-right: 5rem;
+  padding-left: 2rem;
+  color: black;
+}
+#blog .uk-card-body, #blog p, #blog .readm{ background-color: #FFFFFF00; color: black; }
+a .uk-slider-item{color: black;}
+#blog .uk-slider-nav{  margin-block-start: 12px;}
+
+/*----CONTACT-----*/
+#contact{
+  background-color: #0C380A;
+  padding: 1rem;
+  padding-bottom: 2em;
+}
+#contact .uk-button{ color: white;}
+#contact h2{color: white; font-family: 'Charmonman';}
+#modalC .uk-modal-dialog{ background-color: #F0EFDD;}
+#modalC h1{ font-family: 'Charmonman'; color: white; text-shadow: 1px 1px 15px black;}
+#modalC label{ font-family: 'Caveat'; font-size: 20px;}
+#modalC input, #modalC textarea{ font-family: 'Caveat'; font-size: 15px;}
+
+/*----RIGHTS-----*/
+#rights{
+  background-color: #0C380A;
+  color: #B1B1B1;
+  font-family: 'Charmonman';
+  font-size: 12px;
+  text-align: center;
+  padding-bottom: 0.3rem;
+}
+#rights p{ margin-block-end: 0;}
+
+
+
+
+
+
+
+
+/*-----MEDIA----*/
+@media all and (max-device-width: 639px){ /*xs devices*/
+  .xl{ display:none;}
+
+}
+@media all and (max-device-width: 503px){
+/*----SLIDER-----*/
+  #slider img{ width: 11vh;}
+  #slider p{ font-size: 17px;}
+  #about{ padding-right: 2rem;}
+  #about h3{ font-size: 20px; font-weight: 700;}
+  #portf{ padding-right: 0;}
+  #headerP{ margin-right: 1.5rem;}
+  #blog{ padding-right: 2rem; padding-left: 0;}
+  #slidB{ margin-left: 1rem;}
+  .child1{ margin-top: 25%!important;}
+
+}
+@media all and (max-device-height: 415px){
+/*----SLIDER-----*/
+  #slider img{ width: 17vh; margin-block-end: 0px;}
+  #slider p{ font-size: 17px;}
+  #slider h1{ margin-block-start: 0px;}
+  #slider h3{ margin-block-start: 0px;}
+  #about h3{ font-size: 20px; font-weight: 700;}
+  #portf{ padding-right: 3rem;}
+  #blog{ padding-right: 2rem; padding-left: 0;}
+  #slidB{ margin-left: 1rem; margin-right: 3rem;}
+  .child1{ margin-top: 29%!important;}
+
+}
+/*---OTHER---*/
+.parent {  z-index: 2;/*dół*/ }
+.uk-button-green{
+  background-color: #0E4206;
+  color: white;
+}
+.break{
+  text-align: center;
+  color: #0E4206;
+  background-color: #F0EFDD;
+  padding: 1rem;
+}
+.righ{ margin-right: 2rem;}

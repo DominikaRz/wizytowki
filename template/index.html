@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/uikit.css"/>
+    <link rel="stylesheet" href="css/uikit-rtl.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css"/>
+    <!--JS-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/uikit.js"></script>
+    <script src="js/uikit-icons.js"></script>
+
+    <!--ICONS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css"/>
+    <!--FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Combo' rel='stylesheet'>
+
+    <!-- -->
+
+    <title>index</title>
+  </head>
+  <body>
+  <!--NAVBAR-->
+    
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" style="position: relative; z-index: 980;" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="index">Strona główna</a></li>
+                        <li>
+                            <a href="#">Branże</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="search?id=1">administracja</a></li><li><a href="search?id=2">budownictwo</a></li><li><a href="search?id=3">edukacja</a></li><li><a href="search?id=4">ekonomia</a></li><li><a href="search?id=5">elektronika</a></li><li><a href="search?id=6">gastronomia</a></li><li><a href="search?id=7">handel</a></li><li><a href="search?id=8">medycyna</a></li><li><a href="search?id=9">motoryzacja</a></li><li><a href="search?id=10">poligrafia</a></li><li><a href="search?id=11">prawo</a></li><li><a href="search?id=12">rekreacja</a></li><li><a href="search?id=13">rolnictwo</a></li><li><a href="search?id=14">technika</a></li><li><a href="search?id=15">uroda</a></li><li><a href="search?id=16">usługi</a></li><li><a href="search?id=17">wyposarzenie wnętrz</a></li><li><a href="search?id=18">zdrowie</a></li><li><a href="search?id=19">inne</a></li><li><a href="search?id=23">finansowość</a></li><li><a href="search?id=24">finanse</a></li><li><a href="search?id=25">gabrayty</a></li></ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Wizytówki</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="search?id=1">pcserwis.wizyt.pl</a></li><li><a href="search?id=2">meddent.wizyt.pl</a></li><li><a href="search?id=3">roza.wizyt.pl</a></li><li><a href="search?id=4">lindt.wizyt.pl</a></li><li><a href="search?id=5">karmello.wizyt.pl</a></li><li><a href="search?id=6">woda.wizyt.pl</a></li><li><a href="search?id=7">magnolia.wizyt.pl</a></li><li><a href="search?id=8">artshop.wizyt.pl</a></li><li><a href="search?id=9">agd.wizyt.pl</a></li><li><a href="search?id=19">firo.wizyt.pl</a></li><li><a href="search?id=21">geronimo.wizyt.pl</a></li><li><a href="search?id=22">datanet.wizyt.pl</a></li></ul>
+                            </div>
+                        </li>
+                        <li><a href="pomoc">Pomoc</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <div uk-grid>
+                        <p>
+                            <a class="uk-button uk-button-default" href="#modalC" uk-toggle>Zaloguj</a>
+                        </p>
+                    </div>
+                </div>
+                <div id="modalC" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <div class="uk-padding-large uk-flex-middle" uk-grid>
+                            <form class="uk-form-stacked" action="log.php" method="POST">
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Login</label>
+                                    <input class="uk-input uk-form-width-medium" name="login" type="text" placeholder="Podaj login..." value="root">
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Hasło</label>
+                                    <input class="uk-input uk-form-width-medium" name="haslo" type="password" placeholder="Podaj hasło..." value="zaq1@WSX">
+                                </div>
+                                <div class="uk-margin">
+                                    <button class="uk-button uk-button-default uk-modal-close" type="reset">Anuluj</button>
+                                    <button class="uk-button uk-button-green" type="submit">Zaloguj</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+  <!--MAIN-->
+    <main>
+      <!--SLIDER + (short) :)-->
+        <div id="slider" class="uk-flex uk-flex-middle uk-flex-center">
+          <span class="uk-overlay" id="short">
+            <h1 class="uk-heading-medium">Wizytówki dla każdego</h1>
+        </div>
+        <div id="search">
+            <style type="text/css">
+                ul,li { margin:0; padding:0; list-style:none;}
+                .label { color:#000; font-size:16px;}
+            </style>
+            <form action="search" method="POST">
+                <select name="multi[]" class="uk-select" multiple id="multi">
+                    <option value="1"> administracja</option><option value="2"> budownictwo</option><option value="3"> edukacja</option><option value="4"> ekonomia</option><option value="5"> elektronika</option><option value="6"> gastronomia</option><option value="7"> handel</option><option value="8"> medycyna</option><option value="9"> motoryzacja</option><option value="10"> poligrafia</option><option value="11"> prawo</option><option value="12"> rekreacja</option><option value="13"> rolnictwo</option><option value="14"> technika</option><option value="15"> uroda</option><option value="16"> usługi</option><option value="17"> wyposarzenie wnętrz</option><option value="18"> zdrowie</option><option value="19"> inne</option><option value="23"> finansowość</option><option value="24"> finanse</option><option value="25"> gabrayty</option>                </select>
+                <button class="uk-button uk-button-green" type="submit">Szukaj</button>
+            </form>
+                <!-- JavaScript -->
+            <script src="js/jquery-3.2.1.min.js"></script>
+            <script src="js/jquery.multiselect.js"></script>
+            <script>
+                $('#multi').multiselect({
+                    columns: 1,
+                    placeholder: 'Wybierz branże',
+                    search: true
+                });
+            </script>
+        </div>
+        <div id="branze">
+            <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-margin uk-padding" uk-grid="masonry: true">
+                <div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">administracja</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=19">firo.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">ekonomia</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=19">firo.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">elektronika</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=1">pcserwis.wizyt.pl</a></li><li><a href="card.php?id=9">agd.wizyt.pl</a></li><li><a href="card.php?id=22">datanet.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">gastronomia</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=4">lindt.wizyt.pl</a></li><li><a href="card.php?id=5">karmello.wizyt.pl</a></li><li><a href="card.php?id=6">woda.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">handel</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=1">pcserwis.wizyt.pl</a></li><li><a href="card.php?id=2">meddent.wizyt.pl</a></li><li><a href="card.php?id=3">roza.wizyt.pl</a></li><li><a href="card.php?id=4">lindt.wizyt.pl</a></li><li><a href="card.php?id=5">karmello.wizyt.pl</a></li><li><a href="card.php?id=6">woda.wizyt.pl</a></li><li><a href="card.php?id=7">magnolia.wizyt.pl</a></li><li><a href="card.php?id=8">artshop.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">medycyna</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=2">meddent.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">poligrafia</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=8">artshop.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">rekreacja</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=21">geronimo.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">technika</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=22">datanet.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">usługi</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=1">pcserwis.wizyt.pl</a></li><li><a href="card.php?id=9">agd.wizyt.pl</a></li><li><a href="card.php?id=21">geronimo.wizyt.pl</a></li><li><a href="card.php?id=22">datanet.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">zdrowie</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=2">meddent.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div><div>
+                        <div class="uk-flex uk-flex-center uk-flex-middle">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <h3 class="uk-card-title">inne</h3>
+                                <p>
+                                    <ul class="uk-list"><li><a href="card.php?id=19">firo.wizyt.pl</a></li><li><a href="card.php?id=21">geronimo.wizyt.pl</a></li><li><a href="card.php?id=22">datanet.wizyt.pl</a></li></ul>
+                                </p> 
+                            </div>
+                        </div>
+                    </div>            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="rights">
+            <p>Dominika Rzepka &copy; 2021</p>
+        </div>
+    </footer>
+  </body>
+</html>

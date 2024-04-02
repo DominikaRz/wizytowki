@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/uikit.css"/>
+    <link rel="stylesheet" href="css/uikit-rtl.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.multiselect.css"/>
+    <!--JS-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/uikit.js"></script>
+    <script src="js/uikit-icons.js"></script>
+
+    <!--ICONS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css"/>
+    <!--FONTS-->
+    <link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Caveat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Amita' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Combo' rel='stylesheet'>
+
+    <!-- -->
+
+    <title>card</title>
+  </head>
+  <body>
+  <!--NAVBAR-->
+    
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" style="position: relative; z-index: 980;" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="index">Strona główna</a></li>
+                        <li>
+                            <a href="#">Branże</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="search?id=1">administracja</a></li><li><a href="search?id=2">budownictwo</a></li><li><a href="search?id=3">edukacja</a></li><li><a href="search?id=4">ekonomia</a></li><li><a href="search?id=5">elektronika</a></li><li><a href="search?id=6">gastronomia</a></li><li><a href="search?id=7">handel</a></li><li><a href="search?id=8">medycyna</a></li><li><a href="search?id=9">motoryzacja</a></li><li><a href="search?id=10">poligrafia</a></li><li><a href="search?id=11">prawo</a></li><li><a href="search?id=12">rekreacja</a></li><li><a href="search?id=13">rolnictwo</a></li><li><a href="search?id=14">technika</a></li><li><a href="search?id=15">uroda</a></li><li><a href="search?id=16">usługi</a></li><li><a href="search?id=17">wyposarzenie wnętrz</a></li><li><a href="search?id=18">zdrowie</a></li><li><a href="search?id=19">inne</a></li><li><a href="search?id=23">finansowość</a></li><li><a href="search?id=24">finanse</a></li><li><a href="search?id=25">gabrayty</a></li></ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#">Wizytówki</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="search?id=1">pcserwis.wizyt.pl</a></li><li><a href="search?id=2">meddent.wizyt.pl</a></li><li><a href="search?id=3">roza.wizyt.pl</a></li><li><a href="search?id=4">lindt.wizyt.pl</a></li><li><a href="search?id=5">karmello.wizyt.pl</a></li><li><a href="search?id=6">woda.wizyt.pl</a></li><li><a href="search?id=7">magnolia.wizyt.pl</a></li><li><a href="search?id=8">artshop.wizyt.pl</a></li><li><a href="search?id=9">agd.wizyt.pl</a></li><li><a href="search?id=19">firo.wizyt.pl</a></li><li><a href="search?id=21">geronimo.wizyt.pl</a></li><li><a href="search?id=22">datanet.wizyt.pl</a></li></ul>
+                            </div>
+                        </li>
+                        <li><a href="pomoc">Pomoc</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <div uk-grid>
+                        <p>
+                            <a class="uk-button uk-button-default" href="#modalC" uk-toggle>Zaloguj</a>
+                        </p>
+                    </div>
+                </div>
+                <div id="modalC" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <div class="uk-padding-large uk-flex-middle" uk-grid>
+                            <form class="uk-form-stacked" action="log.php" method="POST">
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Login</label>
+                                    <input class="uk-input uk-form-width-medium" name="login" type="text" placeholder="Podaj login..." value="root">
+                                </div>
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="form-stacked-text">Hasło</label>
+                                    <input class="uk-input uk-form-width-medium" name="haslo" type="password" placeholder="Podaj hasło..." value="zaq1@WSX">
+                                </div>
+                                <div class="uk-margin">
+                                    <button class="uk-button uk-button-default uk-modal-close" type="reset">Anuluj</button>
+                                    <button class="uk-button uk-button-green" type="submit">Zaloguj</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+  <!--MAIN-->
+    <main>
+        
+                <div id="dane">
+                    <div id="title" class="uk-flex uk-flex-middle uk-flex-center">
+                        <span class="uk-overlay" id="short">
+                            <h1 class="uk-heading-medium">pcserwis.wizyt.pl</h1>  
+                            <h3>Serwis komputerowy Wrocław.</h3>
+                        </span>
+                    </div>
+                    <div class="uk-margin center" uk-grid>
+                        <div class="uk-width-1-2@m">
+                            <h4>Adres:</h4>
+                            <p>Wrocław ul. Pawłowa 12/3<br> 53-604 Wrocław</p>
+                        </div>
+                        <div class="uk-width-1-2@m uk-margin">
+                            <ul class="uk-list uk-list-collapse ">
+                                <li><span uk-icon="icon: receiver"></span> tel: 873 462 509</li>
+                                <li><span uk-icon="icon: mail"></span> mail: biuro@pcserwis.pl</li>
+                                <li><span uk-icon="icon: world"></span> str: https://pcserwis.pl/</li>
+                            </ul>
+                        </div>
+                    </div> 
+                    <div class="uk-margin">  
+                        <iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=51.127078,16.991864&amp;key=AIzaSyCg-NuXqdDnV5y5GgBVDj2H6wzI4kkQ8EM"></iframe>
+                    </div> 
+                    <div class="uk-margin">
+                        <h4>Opis:</h4> 
+                        <p>Oferta PCSERWIS WROCŁAW skierowana jest przede wszystkim do małych i średnich firm. Naszą zaletą jest indywidualne podejście do Klienta, zarówno przy tworzeniu potrzeb działalności konfiguracja w.w. komponentów; udoskonalanie już istniejącej infrastruktury komputerowej; serwis komputerowy(usuwanie usterek sprzętowych i oprogramowania) konfiguracja serwerów</p>
+                    </div>
+                </div>
+        </main>       
+        <footer>
+            <div id="rights">
+                <p>Dominika Rzepka &copy; 2021</p>
+            </div>
+        </footer>
+  </body>
+</html>

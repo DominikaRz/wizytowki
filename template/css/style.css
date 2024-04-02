@@ -1,0 +1,168 @@
+/*      BACKGROUND         */
+/*
+    Colors:
+    #333333, #ffffff, #e1f4f3, #706c61; 
+    #f6f6f6, #eae9e9, #d4d7dd, #420000;
+
+*/
+html,body{ overflow-x: hidden;}
+html{ min-height: 100%; background-color: #eae9e9;}
+body {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100%;
+}
+/*----NAVBAR----*/
+.uk-navbar-container { background: #3d3d47 !important; padding: 0 2rem  0 0 !important; } 
+.uk-navbar-nav > li.uk-active > a { color: #e8e8f1 !important;} 
+.uk-navbar-nav > li > a { color: #b0b0c9 !important;} 
+.uk-navbar-nav > li > a:hover { color: #bebeec !important;} 
+.uk-button-default { color: #cfcfd6 !important;}
+/*---MAIN-----*/
+main{  /**/
+    width: 100vw;  
+    min-height: 89vh; 
+    background-color: #eae9e9;  
+    color: black;
+    z-index: 2;
+}
+/*-----SLIDER-----*/
+#slider{
+  height: 30vh;
+  width: 100vw;
+  font-family: 'Caveat';
+}
+#slider h1{
+  font-family: 'Charmonman';
+  text-align: center;
+}
+#slider p{
+  font-size: 20px;
+  text-align: center;
+}
+/*-----SEARCH------*/
+#search{
+    width: 40vw;
+    margin: 0 auto;
+}
+#search > .ms-options-wrap > button:focus, .ms-options-wrap > button{ 
+  font-family:'Combo'; 
+  font-size: 2em;
+  color: #21213d !important; 
+  font-weight: 600;
+  font-size: 1rem !important;
+} /*, Amita, Abril Fatface, */
+.ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+  padding-right: 1em !important ;
+}
+.ms-options-wrap > .ms-options > ul label {
+  padding-left: 2em !important ;
+}
+#search .uk-button{ background-color: #0e4421; color: #eae9e9; margin: 0.5em -0; }
+/*-----BRANZE-----*/
+#branze{
+    width: 70vw;
+    margin: 0 auto; /*center*/
+}
+#branze h3{ color: #000000; font-weight: lighter; text-decoration-line: underline;}
+#branze a:hover{ color: #967c7c !important; text-decoration: none;}
+#branze a:active{ color: #323235; text-decoration: none;}
+#branze a:link{ color: #470303; font-weight: 500; text-decoration: none;} /*515185*/
+#branze a:visited{ color: #434357; text-decoration: none;}
+/*----RIGHTS-----*/
+footer{
+  background-color: #706c61;
+  color: #ffffff;
+  font-family: 'Charmonman';
+  font-size: 12px;
+  text-align: center;
+  width: 100vw;
+  height: 3vh;
+}
+footer p{ padding-block-start: 0.7em; margin-block-end: 0;}
+/*-----------------------------------------------------------------------------*/
+/*-----CSEARCH---(search)----*/
+#csearch{
+  margin: 0 auto;/*top right bottom left*/
+  text-align: center;
+  width: 70vw;
+  margin: 0 auto; /*center*/
+}
+#csearch .uk-card{ margin: 1em 0 1em;}
+#csearch .uk-card h2{ margin: 0.2em 0 0.2em; font-size: 2.55vw;}
+#csearch .uk-card h4{ margin: 0.2em 0 1em;}
+#csearch .uk-card p{ margin: 0.2em 0 0.2em;}
+#csearch .uk-card span{ color: #cac9c9;}
+#csearch .uk-card a:link,
+#csearch .uk-card a:active, 
+#csearch .uk-card a:visited{ 
+  color: #8b5b5b; 
+  font-weight: 500; 
+  font-size: 2.55vw;
+}
+#csearch .uk-card a:hover{ color: #410000; font-weight: 500;}
+/*-----------------------------------------------------------------------------*/
+/*----DANE--(card)----*/
+#dane{
+  width: 80vw;
+  margin: 0 auto;
+}
+#dane h3{ 
+  margin: 0.2em 0 0; 
+  text-align: center; 
+  font-size: 1.25em;}
+#dane h4{ 
+  margin: 0 0 0.2em; 
+  color: #2542a3; 
+  font-size: 1.40em;}
+#dane h1{ 
+  margin: 0 0 0.2em; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+/*-----------------------------------------------------------------------------*/
+/*---WELCOME--(main)------*/
+#welcome{
+  width: 100vw;
+  height: 89vh;
+  margin: 0 auto;
+  padding: 20vh 6em;
+}
+#welcome h1{ 
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-size: 5vw; 
+  margin: 0 0 0.1em;
+}
+#welcome p{ 
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-size: 1vw; 
+  margin: 0.1em 3em 1em;
+}
+#welcome button{ margin: 0.1em 12vw 1em;}
+/*-----------------------------------------------------------------------------*/
+/*------WYPISZ--(view)-----*/
+#wypisz{ width: 95vw;}
+#wypisz tr:hover{background-color: #ccccdf;}
+#wypisz a:hover{color: #7a4444;}
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+#ThisForm{
+  width: 95vw;
+}
+#ThisForm .uk-button[type=submit]{ background-color: #0e4421; color: #eae9e9; margin: 0.5em -0;}
+#ThisForm .uk-button[type=reset]{ background-color: #868a87; color: #eae9e9; margin: 0.5em -0;}
+#ThisForm span{font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}
+#ThisForm label{font-family: Georgia, 'Times New Roman', Times, serif;}
+
+/*-----------------------------------------------------------------------------*/
+/*-----POM--(pomoc)---------*/
+#pom{
+  width: 100vw;
+  text-align: center;
+  padding-top: 30vh;
+}
+/*-----------------------------------------------------------------------------*/
+/*-----MODALC--(menu2)-------*/
+#modalC .uk-modal-dialog{background-color: #706c61;}
+#modalC .uk-modal-dialog label{color: #ffffff;}
+#modalC .uk-modal-dialog{background-color: #706c61;}

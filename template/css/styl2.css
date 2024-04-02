@@ -1,0 +1,24 @@
+/*      BACKGROUND         */
+html,body{ overflow-x: hidden;}
+html{ height: 100%;}
+body {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 100%;
+}
+.uk-table th{
+    text-align: left !important;
+}
+#welcome{
+    margin: 0 auto; /*center*/
+    text-align: center;
+}
+#dane{
+  width: 70vw;
+  margin: 0 auto;
+}
+#dane h3{
+  font-family: 'Charmonman';
+  margin-bottom: 0;
+}

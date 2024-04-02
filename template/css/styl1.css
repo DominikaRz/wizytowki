@@ -1,0 +1,51 @@
+/*      BACKGROUND         */
+html,body{ overflow-x: hidden;}
+html{ height: 100%;}
+
+main{
+    height: 100vh;
+    width: 100vw;   
+    color: black;
+    /* font-family: 'Caveat';
+   border-bottom: 1px solid #EFEBE9;*/
+    z-index: 2;
+}
+form{
+  width: 70vw;
+  align-content: center;
+  align-items: center;
+}
+
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
